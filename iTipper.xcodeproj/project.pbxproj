@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		933C11231E67F80000FA78E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933C11221E67F80000FA78E7 /* AppDelegate.swift */; };
-		933C11251E67F80000FA78E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933C11241E67F80000FA78E7 /* ViewController.swift */; };
 		933C11281E67F80000FA78E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933C11261E67F80000FA78E7 /* Main.storyboard */; };
 		933C112A1E67F80000FA78E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933C11291E67F80000FA78E7 /* Assets.xcassets */; };
 		933C112D1E67F80000FA78E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933C112B1E67F80000FA78E7 /* LaunchScreen.storyboard */; };
 		933C11381E67F80000FA78E7 /* iTipperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933C11371E67F80000FA78E7 /* iTipperTests.swift */; };
+		93664B4E1E709AD800ED3582 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93664B4D1E709AD800ED3582 /* String+Additions.swift */; };
+		93664B521E71CE4300ED3582 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93664B511E71CE4300ED3582 /* SettingsViewController.swift */; };
+		93664B541E71E83200ED3582 /* iTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93664B531E71E83200ED3582 /* iTMainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +30,6 @@
 /* Begin PBXFileReference section */
 		933C111F1E67F80000FA78E7 /* iTipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		933C11221E67F80000FA78E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		933C11241E67F80000FA78E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		933C11271E67F80000FA78E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		933C11291E67F80000FA78E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		933C112C1E67F80000FA78E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +37,9 @@
 		933C11331E67F80000FA78E7 /* iTipperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTipperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		933C11371E67F80000FA78E7 /* iTipperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTipperTests.swift; sourceTree = "<group>"; };
 		933C11391E67F80000FA78E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93664B4D1E709AD800ED3582 /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
+		93664B511E71CE4300ED3582 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		93664B531E71E83200ED3582 /* iTMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +81,14 @@
 		933C11211E67F80000FA78E7 /* iTipper */ = {
 			isa = PBXGroup;
 			children = (
+				93664B511E71CE4300ED3582 /* SettingsViewController.swift */,
 				933C11221E67F80000FA78E7 /* AppDelegate.swift */,
-				933C11241E67F80000FA78E7 /* ViewController.swift */,
+				93664B531E71E83200ED3582 /* iTMainViewController.swift */,
 				933C11261E67F80000FA78E7 /* Main.storyboard */,
 				933C11291E67F80000FA78E7 /* Assets.xcassets */,
 				933C112B1E67F80000FA78E7 /* LaunchScreen.storyboard */,
 				933C112E1E67F80000FA78E7 /* Info.plist */,
+				93664B4D1E709AD800ED3582 /* String+Additions.swift */,
 			);
 			path = iTipper;
 			sourceTree = "<group>";
@@ -199,8 +205,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				933C11251E67F80000FA78E7 /* ViewController.swift in Sources */,
+				93664B541E71E83200ED3582 /* iTMainViewController.swift in Sources */,
 				933C11231E67F80000FA78E7 /* AppDelegate.swift in Sources */,
+				93664B4E1E709AD800ED3582 /* String+Additions.swift in Sources */,
+				93664B521E71CE4300ED3582 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +412,7 @@
 				933C113E1E67F80000FA78E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		933C113F1E67F80000FA78E7 /* Build configuration list for PBXNativeTarget "iTipperTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +421,7 @@
 				933C11411E67F80000FA78E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
