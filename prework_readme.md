@@ -1,4 +1,4 @@
-# Pre-work - *Name of App Here*
+# Pre-work - iTipper
 
 iTipper is a tip calculator application for iOS.
 
@@ -26,9 +26,7 @@ The following **additional** features are implemented:
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
-
-<img src='http://imgur.com/VGmz1XR' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
+<img src="http://imgur.com/VGmz1XR" alt="Video Walkthrough" height="" width=""> 
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
