@@ -13,13 +13,13 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var tipPercentageSegControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let settings = UserDefaults.standard
+        let tipPercentageIndex = settings.integer(forKey: "defaultTipPercentage")
+        tipPercentageSegControl.selectedSegmentIndex = tipPercentageIndex
     }
     
     @IBAction func tipPercentageChanged(_ sender: UISegmentedControl) {

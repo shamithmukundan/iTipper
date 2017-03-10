@@ -14,26 +14,35 @@ class iTMainViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tipPercentageSegControl: UISegmentedControl!
     @IBOutlet weak var tipAmount: UILabel!
     @IBOutlet weak var totalBillAmount: UILabel!
-    var tipPercentage: Double = 0.10
-    var billAmount: Double?
+    var tipPercentage: Double = 0.10 {
+        didSet {
+            let billAmount = Double(self.billAmountField.text ?? "") ?? 0.0
+            self.updateBillInfo(billAmount)
+        }
+    }
     
-    enum tipIndex: Int {
+    fileprivate let permittedCharacterSet = CharacterSet(charactersIn:"0123456789.%")
+
+    
+    enum TipIndex: Int {
         case ten = 0
         case fifteen
         case twenty
     }
     
-    var totalAmount: Int = 0
+//    var totalAmount: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.billAmountField.text = nil
-        self.tipAmount.text = nil
-        self.totalBillAmount.text = nil
+        //self.billAmountField.text = nil
+        self.billAmountField.becomeFirstResponder()
+        //self.tipAmount.text = nil
+        //self.totalBillAmount.text = nil
         
         tipPercentageSegControl.selectedSegmentIndex = 0
-        UserDefaults.standard.setValue(0, forKey: "defaultTipPercentage")
+        UserDefaults.standard.setValue(TipIndex.ten.rawValue, forKey: "defaultTipPercentage")
         
+        self.billAmountField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,24 +51,32 @@ class iTMainViewController: UIViewController, UITextFieldDelegate {
         let tipPercentageIndex = settings.integer(forKey: "defaultTipPercentage")
         tipPercentageSegControl.selectedSegmentIndex = tipPercentageIndex
         self.updateTipPercentage(tipPercentageIndex)
-        self.updateBillInfo()
+        let billAmount = Double(self.billAmountField.text ?? "") ?? 0.0
+        self.updateBillInfo(billAmount)
     }
+
     
     //On selection of segement controller, the fields needs to be updated.
     @IBAction func tipPercentageChanged(_ sender: UISegmentedControl) {
+        self.updateTipPercentage(sender.selectedSegmentIndex)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let allowedCharacters = "0123456789."
-        if string.trimmed() != "" {
-            if (allowedCharacters.contains(string)) {
-                self.billAmount = Double(((textField.text! as NSString).replacingCharacters(in: range, with: string)).trimmed())
-                self.updateBillInfo()
+        if let rangeOfNonPhoneCharacters = string.rangeOfCharacter(from: self.permittedCharacterSet.inverted) {
+            guard rangeOfNonPhoneCharacters.lowerBound == rangeOfNonPhoneCharacters.upperBound else {
+                return false
             }
-        } else {
-            return true
         }
-        return allowedCharacters.contains(string)
+        
+        if string == "%" && (range.location == textField.text!.characters.count - 1 || textField.text!.characters.last == "%") {
+            return false
+        }
+        
+        return true
+    }
+    
+    func textFieldDidChange(_ textField: UITextField) {
+        self.updateBillInfo(Double(textField.text!) ?? 0.0)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -73,24 +90,21 @@ class iTMainViewController: UIViewController, UITextFieldDelegate {
     
     func updateTipPercentage(_ index: Int) {
         switch index {
-        case tipIndex.ten.rawValue:
+        case TipIndex.ten.rawValue:
             self.tipPercentage = 0.10
-        case tipIndex.fifteen.rawValue:
+        case TipIndex.fifteen.rawValue:
             self.tipPercentage = 0.15
-        case tipIndex.twenty.rawValue:
+        case TipIndex.twenty.rawValue:
             self.tipPercentage = 0.20
         default:
             self.tipPercentage = 0.10
         }
     }
 
-    func updateBillInfo() {
+    func updateBillInfo(_ billAmount: Double ) {
         
-        let bill = self.billAmount ?? 0.0
-        
-        
-        let totalTip = bill * tipPercentage
-        let totalBill = bill + totalTip
+        let totalTip = billAmount * tipPercentage
+        let totalBill = billAmount + totalTip
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
